@@ -49,20 +49,20 @@ func main() {
 			// Read the given PGN database file
 			f, err := os.Open(db)
 			if err != nil {
-				panic(err)
+				return cli.Exit("Could not read PGN database", 1)
 			}
 			defer f.Close()
 
 			// Read the given configuration file
 			y, err := os.ReadFile(conf)
 			if err != nil {
-				panic(err)
+				return cli.Exit("Could not read positions file", 1)
 			}
 
 			var pos []string
 			err = yaml.Unmarshal(y, &pos)
 			if err != nil {
-				panic(err)
+				return cli.Exit("Could not parse positions file", 1)
 			}
 
 			scanner := chess.NewScanner(f)
