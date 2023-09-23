@@ -11,6 +11,26 @@ import (
 	"strings"
 )
 
+type Config struct {
+	Positions []Position
+}
+
+type Position struct {
+	FEN    string
+	Filter Filter
+}
+
+type Rating struct {
+	One     int
+	White   int
+	Black   int
+	Average int
+}
+
+type Filter struct {
+	Rating
+}
+
 // Simplify any given position in Forsyth–Edwards Notation by stripping the half move and full move numbers
 func simplify(fen string) string {
 	rgx := regexp.MustCompile(`(?i)(^[rnbqk1-8]{1,8}\/[rnbqkp1-8]{1,8}\/[rnbqkp1-8]{1,8}\/[rnbqkp1-8]{1,8}\/[rnbqkp1-8]{1,8}\/[rnbqkp1-8]{1,8}\/[rnbqkp1-8]{1,8}\/[rnbqk1-8]{1,8}\s[wb]{1}\s[kq-]{1,4}\s[a-h1-8-]{1,2})\s\d+\s\d+$`)
@@ -59,8 +79,8 @@ func main() {
 				return cli.Exit("Could not read positions file", 1)
 			}
 
-			var pos []string
-			err = yaml.Unmarshal(y, &pos)
+			var c Config
+			err = yaml.Unmarshal(y, &c)
 			if err != nil {
 				return cli.Exit("Could not parse positions file", 1)
 			}
@@ -75,8 +95,8 @@ func main() {
 					sfen := simplify(position.String())
 
 					// Search for the positions irrespective of move number
-					for _, p := range pos {
-						if strings.HasPrefix(p, sfen) {
+					for _, p := range c.Positions {
+						if strings.HasPrefix(p.FEN, sfen) {
 							// Output PGN of matched game
 							fmt.Println(game, "\n")
 							// Skip already matches games
