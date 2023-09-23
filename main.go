@@ -8,8 +8,11 @@ import (
 	"log"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 )
+
+const DefaultRating = 1200 // Default rating assigned to unrated players for the purpose of applying rating filters
 
 type Config struct {
 	Positions []Position
@@ -97,6 +100,30 @@ func main() {
 					// Search for the positions irrespective of move number
 					for _, p := range c.Positions {
 						if strings.HasPrefix(p.FEN, sfen) {
+							// Apply rating filters
+							if p.Filter.Rating != (Rating{}) {
+								white, black := DefaultRating, DefaultRating
+								if game.GetTagPair("WhiteElo") != nil {
+									white, _ = strconv.Atoi(game.GetTagPair("WhiteElo").Value)
+								}
+								if game.GetTagPair("BlackElo") != nil {
+									black, _ = strconv.Atoi(game.GetTagPair("BlackElo").Value)
+								}
+
+								if p.Filter.Rating.Average > 0 && (white+black)/2 < p.Filter.Rating.Average {
+									continue
+								}
+								if p.Filter.Rating.One > 0 && white < p.Filter.Rating.One && black < p.Filter.Rating.One {
+									continue
+								}
+								if p.Filter.Rating.White > 0 && white < p.Filter.Rating.White {
+									continue
+								}
+								if p.Filter.Rating.Black > 0 && black < p.Filter.Rating.Black {
+									continue
+								}
+							}
+
 							// Output PGN of matched game
 							fmt.Println(game, "\n")
 							// Skip already matches games
