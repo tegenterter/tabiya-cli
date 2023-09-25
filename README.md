@@ -55,4 +55,4 @@ The [resulting database](examples/output.pgn) was generated with the following i
 ./tabiya --pgn examples/pirc.pgn --config examples/positions.yaml >> examples/output.pgn
 ```
 
-Although the sought after position occurred in two out of three games in the source database, only one is present in the resulting database. This is expected because the configuration file instructs to filter out games where the white player is rated below 2700, which is the case of one of both games that matched the position search.
+Although the sought after position occurred in two out of three games in the source database, only one is present in the resulting database. This is expected because the configuration file instructs to filter out games where the white player is rated below 2700, which is the case in one of both games that matched the position search.
