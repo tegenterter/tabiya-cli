@@ -18,7 +18,7 @@ Note that move numbers are irrelevant to how positions are matched, thus support
 
 ### Filters
 
-In addition to searching for particular positions, games can also be filtered out based on the minimum specified rating of the players. For each position you can optionally specify any combination of the following rating filters:
+In addition to searching for particular positions, games can also be filtered based on the minimum rating of one or both players of the average rating between them. Per position, you can optionally specify the following filters:
 
 ```yaml
 positions:
@@ -31,9 +31,9 @@ positions:
         black: 2300
 ```
 
-You can choose to apply just one of the above filters. Two or more filters always work cumulatively.
+You can choose to apply just one, or any combination of the filter options listed above. Two or more filters always work cumulatively.
 
-Note that if no rating is specified in the database for any player, then the default rating of `1200` is applied for the purpose of applying rating based filters.
+Note that if no rating is specified in the database for any player, the default rating of `1200` is applied for the purpose of applying rating based filters.
 
 ## Usage
 
