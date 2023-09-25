@@ -37,7 +37,7 @@ Note that if no rating is specified in the database for any player, the default 
 
 ## Usage
 
-Once you have a configuration set up, use it to search any PGN database (such as an issue of [The Week in Chess](https://theweekinchess.com/twic)) you have stored locally like so:
+Once you have a configuration file set up, use it to search any PGN database (such as an issue of [The Week in Chess](https://theweekinchess.com/twic)) you have stored locally like so:
 
 ```bash
 ./tabiya --pgn /path/to/games.pgn --config /path/to/config.yaml
