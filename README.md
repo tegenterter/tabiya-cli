@@ -47,7 +47,7 @@ Games that match the positions and possible rating filters listed in your config
 
 ## Examples
 
-The [sample database](File:examples/database.pgn) contains three famous games where black The Pirc defense, while the [sample configuration file](File:examples/positions.yaml) searches for one particular position that occurred in two of the games.
+The [sample database](File:examples/database.pgn) contains three famous games where black plays the Pirc defense, while the [sample configuration file](File:examples/positions.yaml) searches for one particular position that occurred in two of the games.
 
 The [resulting database](File:examples/output.pgn) was generated with the following instructions:
 
