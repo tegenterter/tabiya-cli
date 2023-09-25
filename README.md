@@ -40,7 +40,19 @@ Note that if no rating is specified in the database for any player, then the def
 Once you have a configuration set up, use it to search any PGN database (such as an issue of [The Week in Chess](https://theweekinchess.com/twic)) you have stored locally like so:
 
 ```bash
-tabiya --pgn /path/to/games.pgn --config /path/to/config.yaml
+./tabiya --pgn /path/to/games.pgn --config /path/to/config.yaml
 ```
 
 Games that match the positions and possible rating filters listed in your configuration will be written as standard output, in the same PGN format as they appear in the source database.
+
+## Examples
+
+The [sample database](File:examples/database.pgn) contains three famous games where black The Pirc defense, while the [sample configuration file](File:examples/positions.yaml) searches for one particular position that occurred in two of the games.
+
+The [resulting database](File:examples/output.pgn) was generated with the following instructions:
+
+```bash
+./tabiya --pgn examples/pirc.pgn --config examples/positions.yaml >> examples/output.pgn
+```
+
+Although the sought after position occurred in two out of three games in the source database, only one is present in the resulting database. This is expected because the configuration file instructs to filter out games where the white player is rated below 2700, which is the case of one of both games that matched the position search.

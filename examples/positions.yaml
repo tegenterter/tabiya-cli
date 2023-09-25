@@ -1,0 +1,5 @@
+positions:
+  - fen: "rnbqk2r/pp2ppbp/2pp1np1/8/3PP3/2N1B3/PPPQ1PPP/R3KBNR w KQkq - 0 6"
+    filter:
+      rating:
+        white: 2700
