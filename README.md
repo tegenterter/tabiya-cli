@@ -18,7 +18,7 @@ Note that move numbers are irrelevant to how positions are matched, thus support
 
 ### Filters
 
-In addition to searching for particular positions, games can also be filtered based on the minimum rating of one or both players of the average rating between them. Per position, you can optionally specify the following filters:
+In addition to searching for particular positions, games can also be filtered based on the minimum rating of one or both players or the average rating between them. Per position, you can optionally specify the following filters:
 
 ```yaml
 positions:
